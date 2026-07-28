@@ -1,3 +1,4 @@
+Nothing should be ignored since only a source file (index.html) was modified and there are no build artifacts, dependencies, or temp files in the changes.
 ```
 # Logs and temp files
 *.log
