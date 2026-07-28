@@ -1244,3 +1244,213 @@ footer .credits a {
     bottom: 15px;
   }
 }
+
+/* MJL Services Custom UI Updates - Coffee Shop Theme */
+:root {
+  --coffee-primary: #6F4E37;
+  --coffee-secondary: #A07855;
+  --coffee-light: #D2B48C;
+  --coffee-dark: #3C2415;
+  --cream: #F5EBDC;
+  --accent-green: #4A7C59;
+}
+
+body {
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--cream);
+  color: var(--coffee-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--coffee-dark);
+  font-weight: 600;
+}
+
+.navbar-b {
+  background-color: rgba(60, 36, 21, 0.95) !important;
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cream) !important;
+  letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+  color: var(--cream) !important;
+  font-weight: 500;
+  margin: 0 0.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--coffee-light) !important;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--coffee-light);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  width: 80%;
+}
+
+.intro-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--cream);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.intro-subtitle {
+  font-size: 1.5rem;
+  color: var(--coffee-light);
+  font-weight: 300;
+}
+
+.overlay-itro {
+  background-color: rgba(60, 36, 21, 0.7);
+}
+
+.title-box-2 h5 {
+  color: var(--coffee-primary);
+  border-left: 4px solid var(--coffee-primary);
+  padding-left: 1rem;
+}
+
+.service-box {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.service-box:hover {
+  transform: translateY(-10px);
+  border-color: var(--coffee-light);
+  box-shadow: 0 20px 40px rgba(60, 36, 21, 0.15);
+}
+
+.service-ico .ico-circle {
+  color: var(--coffee-primary);
+  border: 3px solid var(--coffee-primary);
+}
+
+.s-title {
+  color: var(--coffee-dark);
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.btn-primary {
+  background-color: var(--coffee-primary);
+  border-color: var(--coffee-primary);
+  border-radius: 25px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--coffee-dark);
+  border-color: var(--coffee-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(60, 36, 21, 0.3);
+}
+
+.progress-bar {
+  background-color: var(--coffee-primary);
+  border-radius: 10px;
+}
+
+.box-shadow-full {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(60, 36, 21, 0.1);
+}
+
+.about-img img {
+  border-radius: 15px;
+  border: 4px solid var(--coffee-light);
+}
+
+.copyright-box {
+  background-color: var(--coffee-dark);
+  color: var(--cream);
+  padding: 2rem 0;
+}
+
+.copyright {
+  color: var(--cream);
+}
+
+#contact .contact-form .form-control {
+  border-radius: 10px;
+  border: 2px solid var(--coffee-light);
+  padding: 0.75rem 1rem;
+}
+
+#contact .contact-form .form-control:focus {
+  border-color: var(--coffee-primary);
+  box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+}
+
+/* Coffee Shop Section Styling */
+#coffee-shop .service-box {
+  background: linear-gradient(135deg, var(--cream) 0%, white 100%);
+}
+
+#coffee-shop .s-title {
+  color: var(--coffee-primary);
+}
+
+/* Portfolio Section */
+.work-box {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.work-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(60, 36, 21, 0.2);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+  .intro-title {
+    font-size: 2.5rem;
+  }
+  
+  .intro-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+}
