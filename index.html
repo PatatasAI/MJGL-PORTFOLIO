@@ -1,350 +1,837 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MJL Services - Portfolio & Coffee</title>
-    <style>
-        /* --- RESET & BASICS --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #2c2c2c;
-            background-color: #fdfbf7; /* Cream background */
-        }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-        img { max-width: 100%; display: block; }
+  <meta charset="utf-8">
+  <title>MJL Services - Portfolio & Coffee</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="portfolio, web development, coffee shop, services" name="keywords">
+  <meta content="A unique blend of creativity and code - Professional web development services with a touch of coffee culture" name="description">
 
-        /* --- COLORS --- */
-        :root {
-            --primary: #4a3b32; /* Espresso */
-            --accent: #c69c6d; /* Caramel */
-            --light: #fdfbf7; /* Cream */
-            --white: #ffffff;
-            --text-gray: #666;
-            --google-blue: #4285F4;
-        }
 
-        /* --- LAYOUT UTILITIES --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .section { padding: 80px 0; }
-        .text-center { text-align: center; }
-        
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 50px;
-        }
+  <link href="img/mjl.jpg" rel="icon">
+  <link href="img/mjl.jpg" rel="MJGL">
 
-        /* --- NAVIGATION (TRANSPARENT) --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.15); /* Transparent */
-            backdrop-filter: blur(10px); /* Glass effect */
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 15px 0;
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap; /* Allows wrapping on small screens */
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--white);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            color: var(--white);
-            font-weight: 600;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-            font-size: 1rem;
-        }
-        .nav-links a:hover { color: var(--accent); }
+  
+  <link href="lib/bootstrap/css/bootstrap.min.css?v=2" rel="stylesheet">
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding-top: 60px;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-            text-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--accent);
-            color: var(--white);
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(198, 156, 109, 0.4);
-        }
-        .btn:hover {
-            background: #b0885a;
-            transform: translateY(-2px);
-        }
 
-        /* --- SERVICES --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .service-card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.3s;
-            border-bottom: 4px solid var(--accent);
-        }
-        .service-card:hover { transform: translateY(-10px); }
-        .service-icon { font-size: 3rem; margin-bottom: 20px; }
-        .service-card h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.5rem; }
-        .service-card p { color: var(--text-gray); margin-bottom: 25px; }
+  <link href="lib/font-awesome/css/font-awesome.min.css?v=2" rel="stylesheet">
+  <link href="lib/animate/animate.min.css?v=2" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css?v=2" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css?v=2" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css?v=2" rel="stylesheet">
 
-        /* --- LOCATIONS --- */
-        .locations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .location-item {
-            background: var(--white);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            font-weight: 500;
-            color: var(--primary);
-            border: 1px solid #eee;
-        }
 
-        /* --- REVIEWS (GOOGLE) --- */
-        .reviews-section {
-            background: #f4f4f4;
-            text-align: center;
-        }
-        .google-btn {
-            background: var(--google-blue);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 10px rgba(66, 133, 244, 0.3);
-        }
-        .google-btn:hover { background: #357ae8; }
+  <link href="css/style.css?v=2" rel="stylesheet">
 
-        /* --- LINKEDIN (IFRAME) --- */
-        .linkedin-frame-container {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            overflow: hidden;
-            min-height: 1000px; /* Ensure space for iframe */
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--primary);
-            color: var(--white);
-            padding: 40px 0;
-            text-align: center;
-        }
-        .contact-info { margin-bottom: 20px; }
-        .contact-info p { margin: 5px 0; opacity: 0.9; }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-container { flex-direction: column; gap: 15px; }
-            .nav-links { gap: 15px; justify-content: center; }
-            .section-title { font-size: 2rem; }
-        }
-    </style>
 </head>
-<body>
 
-    <!-- Navigation -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">☕ MJL Services</div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#locations">Locations</a></li>
-                    <li><a href="#reviews">Reviews</a></li>
-                    <li><a href="#recommendations">Recommendations</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body id="page-top">
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+  <!--/ Nav Star /-->
+  <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll" href="#page-top">☕ MJL Services</a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link js-scroll active" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#service">Services Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#coffee-shop">Coffee Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#service-areas">Locations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#work">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+  <div id="home" class="intro route bg-image" style="background-image: url(img/mjl.jpg)">
+    <div class="overlay-itro"></div>
+    <div class="intro-content display-table">
+      <div class="table-cell">
         <div class="container">
-            <h1>Looking for Developers?</h1>
-            <p>Professional web development services brewed to perfection. Serving clients globally with a touch of warmth.</p>
-            <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn">Book a Meeting</a>
+  
+          <h1 class="intro-title mb-4">Looking for Developers?</h1>
+          <p class="intro-subtitle"><span class="text-slider-items">Where Code Meets Coffee,Web Development Services,Premium Coffee Beans,Digital Solutions,Freshly Brewed Excellence</span><strong class="text-slider"></strong></p>
+          <p class="pt-3"><em>Fueling your digital presence one cup at a time</em></p>
+ 
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- Services Section -->
-    <section id="services" class="section">
-        <div class="container">
-            <h2 class="section-title text-center">Our Services</h2>
-            <p class="section-subtitle text-center">Custom solutions tailored to your business needs</p>
-            
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Web Development</h3>
-                    <p>Full-stack websites built with modern technologies. Fast, secure, and responsive.</p>
-                    <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn">Book a Meeting</a>
+
+  <section id="about" class="about-mf sect-pt4 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box-shadow-full">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-sm-6 col-md-5">
+                    <div class="about-img">
+                      <img src="img/mjl.jpg" class="img-fluid rounded b-shadow-a" alt="">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-7">
+                    <div class="about-info">
+                      <p><span class="title-s">Name: </span> <span>Michael Lano</span></p>
+                      <p><span class="title-s">Profile: </span> <span>PROGRAMMER</span></p>
+                      <p><span class="title-s">Email: </span> <span>michaeljohnlano2@gmail.com</span></p>
+                      <p><span class="title-s">Phone: </span> <span>+639695747902</span></p>
+                    </div>
+                  </div>
                 </div>
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>UI/UX Design</h3>
-                    <p>Beautiful, intuitive designs that engage users and elevate your brand identity.</p>
-                    <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn">Book a Meeting</a>
+                <div class="skill-mf">
+                  <p class="title-s">Skill</p>
+                  <span>Website Support | WordPress</span> <span class="pull-right">70%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Graphic Design</span> <span class="pull-right">60%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Multitasking</span> <span class="pull-right">80%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Communication</span> <span class="pull-right">75%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Customer Relationship Management (CRM)</span> <span class="pull-right">80%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Customer Service</span> <span class="pull-right">80%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Customer Support</span> <span class="pull-right">80%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>GoHighLevel Support | Automation</span> <span class="pull-right">80%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Virtual Assitance</span> <span class="pull-right">80%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Tech Savy | Computer Literacy</span> <span class="pull-right">80%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>HTML</span> <span class="pull-right">75%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>CSS</span> <span class="pull-right">65%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Photoshop Editor</span> <span class="pull-right">65%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                  <span>Java</span> <span class="pull-right">75%</span>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
                 </div>
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <h3>SEO Optimization</h3>
-                    <p>Improve your search rankings and drive organic traffic to your business.</p>
-                    <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn">Book a Meeting</a>
+              </div>
+              <div class="col-md-6">
+                <div class="about-me pt-4 pt-md-0">
+                  <div class="title-box-2">
+                    <h5 class="title-left">
+                      About the Barista Developer
+                    </h5>
+                  </div>
+                  <p class="lead">
+                
+                    <p><strong>Hey, I'm Michael Lano!</strong></p>
+                    <p>I'm a unique blend of barista and developer - crafting perfect code like I craft the perfect espresso. With expertise in web development, customer service, and digital solutions, I bring warmth and precision to every project.</p>
+                    <p>Just like brewing coffee requires attention to detail, I apply the same care to creating websites and digital experiences that exceed expectations.</p>
+                    
+              
+                  </p>
+                  <p class="lead">
+                    <p><strong>Work Experience: Stronghold Co.</strong></p>
+                    <p><strong>Virtual Assistant / Marketing | April 2021 – Dec 2021</strong></p>
+                    <p>During the pandemic, I was searching for an online job when an Asian friend introduced me to Discord. Initially hesitant about creating an account, I eventually applied to Stronghold Co., a company that owns the SHX token. Fortunately, I was hired and given the nickname "Square," a designation used for team members.</p>
+                    <p>My primary responsibility was to promote SHX, educating people on how it works and the benefits of investing in it. As a Virtual Assistant in marketing, I engaged with potential investors, shared insights about SHX, and helped build community awareness around the token.</p>
+                    <p>Over the course of eight months, my experience at Stronghold Co. was both enjoyable and educational. I developed valuable skills in marketing, communication, and cryptocurrency promotion, making it a highly rewarding role.</p>
+
+                  </p>
+                  <p class="lead">
+                    <p><strong>Work Experience: Café-Express</strong></p>
+                    <p><strong>Position:  Barista Manager | April 2022 – Jan 2024</strong></p>
+                    <p>My experience at Café-Express was great, and beyond that, I learned a lot. I gained hands-on knowledge of how coffee is made and the step-by-step process involved in brewing the perfect cup.</p>
+                    <p>In addition to making espresso, I enhanced my skills in socializing with different kinds of people, improving my customer service abilities. I also learned to manage sales and expenses, tracking monthly income and expenditures to ensure the business remained profitable.</p>
+                    <p>Overall, my time at Café-Express was both educational and rewarding, helping me develop valuable skills in hospitality, financial management, and customer engagement.</p>
+
+                  </p>
+                  <p class="lead">
+                      <p><strong>Work Experience: Event Hawk</strong></p>
+                      <p><strong>Support Specialist | August 2023 – March 2025</strong></p>
+                      
+                      <p>Provided chat and support assistance, ensuring clients received prompt and effective solutions.</p>
+                      <p>Assisted businesses in setting up and optimizing Google Ads and Meta Ads for lead generation.</p>
+                      <p>Guided clients on website optimization, social media marketing, and automated messaging campaigns.</p>
+                      <p>Troubleshot issues related to Event Hawk's CRM system and marketing automations.</p>
+                      <p>Created and maintained knowledge base articles to improve client self-service and support efficiency.</p>
+                      <p>Developed onboarding processes to help clients maximize the value of Event Hawk's services.</p>
+                      <p>Managed client follow-ups regarding subscription renewals, cancellations, and business growth strategies.</p>
+                      <p>Supported the team in nurturing leads and converting prospects into long-term clients.</p>
+                      
+                      <p><strong>Key Achievements:</strong></p>
+                      <p>Designed automation workflows that improved client engagement and support efficiency.</p>
+                      <p>Enhanced follow-up processes, leading to increased client retention and satisfaction.</p>
+                      <p>Contributed to refining messaging strategies, resulting in higher response rates.</p>
+                      <p>Helped improve Event Hawk’s online presence through SEO and content creation efforts.</p>
+                  </p>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Locations Section -->
-    <section id="locations" class="section" style="background-color: #f9f9f9;">
-        <div class="container">
-            <h2 class="section-title text-center">Service Areas</h2>
-            <p class="section-subtitle text-center">Proudly serving clients locally and globally</p>
-            
-            <div class="locations-grid">
-                <div class="location-item">Arizona, USA</div>
-                <div class="location-item">Illinois, USA</div>
-                <div class="location-item">Maryland, USA</div>
-                <div class="location-item">United States</div>
-                <div class="location-item">Virginia, USA</div>
-                <div class="location-item">Phoenix, AZ, USA</div>
-                <div class="location-item">North Carolina, USA</div>
-                <div class="location-item">Washington, DC, USA</div>
-                <div class="location-item">Taguig, Metro Manila, Philippines</div>
-                <div class="location-item">Las Piñas, Metro Manila, Philippines</div>
-                <div class="location-item">Parañaque, Metro Manila, Philippines</div>
-                <div class="location-item">Makati City, Metro Manila, Philippines</div>
+  <!--/ Section Services Star /-->
+  <section id="service" class="services-mf route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              ☕ Services Menu
+            </h3>
+            <p class="subtitle-a">
+              "Freshly Brewed Digital Solutions"
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-monitor"></i></span>
             </div>
+            <div class="service-content">
+              <h2 class="s-title">Custom Website</h2>
+              <p class="s-description text-center">
+                Hand-crafted websites tailored to your brand, brewed to perfection.
+              </p>
+              <p class="text-center"><a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn btn-primary btn-sm">Book a Meeting</a></p>
+            </div>
+          </div>
         </div>
-    </section>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-code-working"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Web Development</h2>
+              <p class="s-description text-center">
+                Full-stack development with clean code and robust functionality.
+              </p>
+              <p class="text-center"><a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn btn-primary btn-sm">Book a Meeting</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-cart"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">E-Commerce Sites</h2>
+              <p class="s-description text-center">
+                Sell coffee, products, or anything online with a beautiful store.
+              </p>
+              <p class="text-center"><a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn btn-primary btn-sm">Book a Meeting</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-android-phone-portrait"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Mobile App UI</h2>
+              <p class="s-description text-center">
+                Beautiful, intuitive mobile app designs for Android & iOS.
+              </p>
+              <p class="text-center"><a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn btn-primary btn-sm">Book a Meeting</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-paintbrush"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Brand & Logo Design</h2>
+              <p class="s-description text-center">
+                Memorable logos and branding that makes your business stand out.
+              </p>
+              <p class="text-center"><a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn btn-primary btn-sm">Book a Meeting</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-stats-bars"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Digital Marketing</h2>
+              <p class="s-description text-center">
+                SEO, social media, and ads to grow your online presence.
+              </p>
+              <p class="text-center"><a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn btn-primary btn-sm">Book a Meeting</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Google Reviews Section -->
-    <section id="reviews" class="section reviews-section">
-        <div class="container">
-            <h2 class="section-title">Client Feedback</h2>
-            <p class="section-subtitle">Your satisfaction is our priority. See what others say!</p>
-            
-            <a href="https://g.page/r/Ce3iQHCKXOV_EAE/review" target="_blank" class="google-btn">
-                <span>★</span> Leave a Review on Google
+
+  <div class="section-counter paralax-mf bg-image" style="background-image: url(img/counters-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-lg-3">
+          <div class="counter-box">
+            <div class="counter-ico">
+              <span class="ico-circle"><i class="ion-checkmark-round"></i></span>
+            </div>
+            <div class="counter-num">
+              <p class="counter">20</p>
+              <span class="counter-text">WORKS COMPLETED</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 col-lg-3">
+          <div class="counter-box pt-4 pt-md-0">
+            <div class="counter-ico">
+              <span class="ico-circle"><i class="ion-ios-calendar-outline"></i></span>
+            </div>
+            <div class="counter-num">
+              <p class="counter">3</p>
+              <span class="counter-text">YEARS OF EXPERIENCE</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 col-lg-3">
+          <div class="counter-box pt-4 pt-md-0">
+            <div class="counter-ico">
+              <span class="ico-circle"><i class="ion-ios-people"></i></span>
+            </div>
+            <div class="counter-num">
+              <p class="counter">10</p>
+              <span class="counter-text">TOTAL CLIENTS</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 col-lg-3">
+          <div class="counter-box pt-4 pt-md-0">
+            <div class="counter-ico">
+              <span class="ico-circle"><i class="ion-ribbon-a"></i></span>
+            </div>
+            <div class="counter-num">
+              <p class="counter">6</p>
+              <span class="counter-text">Certificate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coffee Shop Section -->
+  <section id="coffee-shop" class="services-mf route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              ☕ Coffee Shop
+            </h3>
+            <p class="subtitle-a">
+              "Premium Beans, Perfectly Brewed"
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-coffee"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Espresso Blend</h2>
+              <p class="s-description text-center">
+                Rich, bold espresso beans sourced from South America.
+              </p>
+              <p class="text-center"><strong>$18.99 / 12oz</strong></p>
+              <p class="text-center"><button class="btn btn-primary btn-sm">Order Now</button></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-cup"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">House Roast</h2>
+              <p class="s-description text-center">
+                Our signature medium roast with notes of chocolate and caramel.
+              </p>
+              <p class="text-center"><strong>$16.99 / 12oz</strong></p>
+              <p class="text-center"><button class="btn btn-primary btn-sm">Order Now</button></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-leaf"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Organic Cold Brew</h2>
+              <p class="s-description text-center">
+                Smooth, organic cold brew concentrate ready to serve.
+              </p>
+              <p class="text-center"><strong>$22.99 / 16oz</strong></p>
+              <p class="text-center"><button class="btn btn-primary btn-sm">Order Now</button></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-ios-cart"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Coffee Subscription</h2>
+              <p class="s-description text-center">
+                Fresh beans delivered monthly to your doorstep.
+              </p>
+              <p class="text-center"><strong>$29.99 / month</strong></p>
+              <p class="text-center"><button class="btn btn-primary btn-sm">Subscribe</button></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-gift"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Gift Cards</h2>
+              <p class="s-description text-center">
+                Give the gift of great coffee to friends and family.
+              </p>
+              <p class="text-center"><strong>From $25</strong></p>
+              <p class="text-center"><button class="btn btn-primary btn-sm">Purchase</button></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="ion-bag"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Brewing Equipment</h2>
+              <p class="s-description text-center">
+                Quality grinders, pour-over sets, and French presses.
+              </p>
+              <p class="text-center"><strong>Various Prices</strong></p>
+              <p class="text-center"><button class="btn btn-primary btn-sm">Browse</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+  <!-- Service Areas Section -->
+  <section id="service-areas" class="services-mf route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              🌍 Service Areas
+            </h3>
+            <p class="subtitle-a">
+              "Serving Clients Across the US and Philippines"
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-content">
+              <h4 class="s-title">🇺🇸 United States</h4>
+              <ul class="location-list">
+                <li>Arizona, USA</li>
+                <li>Illinois, USA</li>
+                <li>Maryland, USA</li>
+                <li>Virginia, USA</li>
+                <li>Phoenix, AZ, USA</li>
+                <li>North Carolina, USA</li>
+                <li>Washington, DC, USA</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-content">
+              <h4 class="s-title">🇵🇭 Philippines</h4>
+              <ul class="location-list">
+                <li>Taguig, Metro Manila</li>
+                <li>Las Piñas, Metro Manila</li>
+                <li>Parañaque, Metro Manila</li>
+                <li>Makati City, Metro Manila</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-content">
+              <h4 class="s-title">💼 Remote Services</h4>
+              <p class="s-description text-center">
+                Available for remote work worldwide. Contact us to discuss your project needs.
+              </p>
+              <p class="text-center"><a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn btn-primary btn-sm">Schedule Consultation</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Reviews Section -->
+  <section id="reviews" class="testimonials-mf route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              ⭐ What Our Clients Say
+            </h3>
+            <p class="subtitle-a">
+              "Your success is our best review"
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="service-box">
+            <div class="service-content text-center">
+              <p class="lead">
+                We take pride in delivering exceptional service. Read what our clients have to say about their experience working with MJL Services.
+              </p>
+              <p class="pt-3">
+                <a href="https://g.page/r/Ce3iQHCKXOV_EAE/review" target="_blank" class="btn btn-primary btn-lg">
+                  <i class="fa fa-google"></i> Leave a Review on Google
+                </a>
+              </p>
+              <p class="pt-2">
+                <small>Your feedback helps us improve and grow!</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="work" class="portfolio-mf sect-pt4 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              Portfolio
+            </h3>
+            <p class="subtitle-a">
+              My Digital Creations & Projects
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/android studio 1.jpg" data-lightbox="gallery-mf1">
+              <div class="work-img">
+                <img src="img/work1.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Delivery App UI</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Android Studio</span> / <span class="w-date">1 Jan. 2023</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </a>
+          </div>
         </div>
-    </section>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/android 3.jpg" data-lightbox="gallery-mf2">
+              <div class="work-img">
+                <img src="img/work 2.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Chatting App UI </h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Android Studio</span> / <span class="w-date">20 October. 2020</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/discord bot.jpg" data-lightbox="gallery-mf3">
+              <div class="work-img">
+                <img src="img/word 3.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Discord Bots</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">AI ChatBox</span> / <span class="w-date">25 June. 2021</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/meyers token reference 2021.gif" data-lightbox="gallery-mf4">
+              <div class="work-img">
+                <img src="img/work 4.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Meyers Token </h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Adobe Photoshop</span> / <span class="w-date">15 July. 2021</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/logo for mlbb.png" data-lightbox="gallery-mf5">
+              <div class="work-img">
+                <img src="img/work 5.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Mobile Legend Team Logo</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Adobe Photoshop</span> / <span class="w-date">24 November. 2021</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/website.jpg" data-lightbox="gallery-mf6">
+              <div class="work-img">
+                <img src="img/work 6.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Web Design</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">https://my-space.odoo.com/</span> / <span class="w-date">16 June. 2023</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+ 
 
-    <!-- LinkedIn Recommendations Section (IFRAME) -->
-    <section id="recommendations" class="section">
-        <div class="container">
-            <h2 class="section-title text-center">Professional Recommendations</h2>
-            <p class="section-subtitle text-center">Endorsements from colleagues and clients</p>
-            
-            <div class="linkedin-frame-container">
-                <iframe 
-                    src="https://widgets.sociablekit.com/linkedin-recommendations/iframe/25700779" 
-                    frameborder="0" 
-                    width="100%" 
-                    height="1000px"
-                    style="border:none; overflow:hidden;">
-                </iframe>
+  <!--/ Section Contact-Footer Star /-->
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(img/overlay-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="contact-mf">
+            <div id="contact" class="box-shadow-full">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="title-box-2">
+                    <h5 class="title-left">
+                  <div class="socials">
+                    <ul>
+                      <a href="https://calendly.com/michaeljohnlano2/project-meeting" target = ><i class="fa fa-google w3-hover-opacity"></i></a>
+                      <a href="https://www.facebook.com/michael.lano.2024" target = ><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+                      <a href="https://www.linkedin.com/in/michael-l-724661133/" target = ><i class="fa fa-linkedin w3-hover-opacity"></i></a>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section" style="background: var(--primary); color: white;">
-        <div class="container text-center">
-            <h2 class="section-title" style="color: white;">Get In Touch</h2>
-            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Ready to start your project? Contact us today.</p>
-            
-            <div class="contact-info">
-                <p><strong>Phone:</strong> +639695747902</p>
-                <p><strong>Email:</strong> contact@mjl-services.com</p>
-                <p><strong>Location:</strong> Remote / Global</p>
-            </div>
-            
-            <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn" style="background: white; color: var(--primary);">Schedule Call</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
+      </div>
+    </div>
     <footer>
-        <div class="container">
-            <p>&copy; 2026 MJL Services. All rights reserved.</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="copyright-box">
+              <p class="copyright">&copy; Copyright <strong>MJL Services 2026</strong>. All Rights Reserved | Designed with ☕ and &lt;/&gt;</p>
+            </div>
+          </div>
         </div>
+      </div>
     </footer>
+  </section>
+  <!--/ Section Contact-footer End /-->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <div id="preloader"></div>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/popper/popper.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/counterup/jquery.waypoints.min.js"></script>
+  <script src="lib/counterup/jquery.counterup.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="lib/typed/typed.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js?v=2"></script>
 
 </body>
 </html>
