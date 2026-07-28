@@ -1637,3 +1637,56 @@ html {
         padding: 1rem;
     }
 }
+
+/* Service Areas Section Styles */
+.location-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+  color: #495057;
+}
+
+.location-list li:last-child {
+  border-bottom: none;
+}
+
+.location-list li:before {
+  content: "✓";
+  color: #0078ff;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-right: 0.5em;
+}
+
+/* Testimonials/Reviews Section */
+.testimonials-mf {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+}
+
+.testimonials-mf .btn-lg {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+}
+
+.testimonials-mf .btn i {
+  margin-right: 8px;
+}
+
+/* Enhanced Transparent Navbar */
+.navbar-b {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.navbar-b.navbar-reduce {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.1);
+}
