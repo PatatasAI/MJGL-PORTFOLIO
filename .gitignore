@@ -4,33 +4,39 @@
 __pycache__/
 *.o
 *.obj
+dist/
+build/
 *.class
-*.exe
-*.dll
 *.so
+*.dll
+*.exe
 *.a
 *.out
 
 # Dependencies
-node_modules/
-venv/
 .venv/
-.env
-.env.local
-*.env.*
+venv/
+node_modules/
+target/
+.gradle/
+.mypy_cache/
+.pytest_cache/
+julia-*/
+zig*/
 
 # Logs and temp files
 *.log
 *.tmp
 *.swp
 *.swo
+*.bak
+*.~
+*~
 
-# Build directories
-dist/
-build/
-target/
-*.jar
-*.war
+# Environment
+.env
+.env.local
+.env.*
 
 # Editors
 .vscode/
@@ -38,9 +44,16 @@ target/
 *.swp
 *.swo
 
-# System files
+# System
 .DS_Store
 Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+desktop.ini
 
 # Coverage
 coverage/
