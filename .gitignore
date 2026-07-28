@@ -67,3 +67,11 @@ htmlcov/
 *.lz
 *.lzo
 ```
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+```
+(index.html is a source file, so no changes needed to .gitignore)
+
+# No changes needed - only source/config files detected
