@@ -5,158 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MJL Services - Portfolio & Coffee</title>
     <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --bg-color: #f9f5f0; /* Cream */
-            --text-color: #2c2420; /* Dark Espresso */
-            --accent-color: #c69c6d; /* Caramel */
-            --secondary-bg: #eaddcf; /* Latte */
-            --white: #ffffff;
-            --glass: rgba(44, 36, 32, 0.85); /* Dark transparent glass */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
+        /* --- RESET & BASICS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f9f7f2; /* Cream background */
+            color: #2c2c2c;
             line-height: 1.6;
             overflow-x: hidden;
         }
-
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
+        img { max-width: 100%; display: block; }
 
-        /* --- NAVIGATION (TRANSPARENT GLASS) --- */
+        /* --- VARIABLES --- */
+        :root {
+            --primary: #4a3b32; /* Dark Espresso */
+            --accent: #c49a6c; /* Caramel */
+            --light: #fff;
+            --dark-overlay: rgba(0,0,0,0.6);
+        }
+
+        /* --- NAVIGATION (Transparent Glass) --- */
         nav {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 5%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.1); /* Very transparent initially */
+            background: rgba(44, 44, 44, 0.85); /* Dark transparent */
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            transition: background 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-
-        nav.scrolled {
-            background: var(--glass);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--white);
+            color: var(--light);
             letter-spacing: 1px;
         }
-
         .nav-links {
             display: flex;
             gap: 2rem;
         }
-
         .nav-links a {
-            color: var(--white);
+            color: var(--light);
             font-weight: 500;
             font-size: 0.95rem;
-            position: relative;
+            opacity: 0.9;
         }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent-color);
-            transition: width 0.3s;
+        .nav-links a:hover {
+            color: var(--accent);
+            opacity: 1;
         }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
         /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+        .menu-toggle { display: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
         /* --- HERO SECTION --- */
-        .hero {
+        header {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80');
+            background: linear-gradient(var(--dark-overlay), var(--dark-overlay)), 
+                        url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Parallax effect */
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
             text-align: center;
-            color: var(--white);
+            color: var(--light);
             padding: 0 20px;
         }
-
-        .hero-content h1 {
+        header h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease;
         }
-
-        .hero-content p {
+        header p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 2rem;
+            color: #ddd;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
         }
-
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: var(--accent-color);
-            color: var(--white);
+            background: var(--accent);
+            color: var(--light);
             border-radius: 50px;
             font-weight: 600;
-            border: 2px solid var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--accent);
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
         }
-
         .btn:hover {
-            background-color: transparent;
-            color: var(--accent-color);
+            background: transparent;
+            color: var(--accent);
         }
 
         /* --- SECTIONS GENERAL --- */
         section {
-            padding: 5rem 10%;
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
+            color: var(--primary);
+            margin-bottom: 10px;
         }
-
         .section-subtitle {
             text-align: center;
             color: #666;
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
+            margin-bottom: 50px;
+            font-style: italic;
         }
 
         /* --- ABOUT US --- */
@@ -164,223 +136,171 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 3rem;
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 20px;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-
         .about-img {
-            flex: 1;
-            min-width: 300px;
+            flex: 1 1 300px;
+            text-align: center;
         }
-
         .about-img img {
             width: 100%;
+            max-width: 350px;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin: 0 auto;
         }
-
         .about-text {
-            flex: 1.5;
-            min-width: 300px;
+            flex: 1 1 400px;
         }
-
         .about-text h3 {
             font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .about-text p {
+            margin-bottom: 15px;
+            color: #555;
+            text-align: justify;
         }
 
-        /* --- SERVICES --- */
+        /* --- SERVICES (Menu Style) --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
-
         .service-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
             text-align: center;
+            border: 1px solid #eee;
             transition: transform 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-bottom: 4px solid var(--accent-color);
         }
-
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            border-color: var(--accent);
         }
-
         .service-icon {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
             display: block;
         }
-
         .service-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
         }
-
-        .service-card .btn-small {
-            margin-top: 1.5rem;
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--text-color);
-            color: var(--white);
-            border-radius: 20px;
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
             font-size: 0.9rem;
         }
+        .btn-small {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        .btn-small:hover { background: var(--accent); }
 
         /* --- LOCATIONS --- */
-        .locations-section {
-            background-color: var(--secondary-bg);
-        }
-
         .locations-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
+            gap: 15px;
         }
-
         .location-item {
-            background: var(--white);
-            padding: 1rem;
-            border-radius: 10px;
+            background: white;
+            padding: 15px;
             text-align: center;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
             font-weight: 500;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            color: var(--primary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         /* --- REVIEWS & LINKEDIN --- */
-        .reviews-container {
+        .reviews-section {
+            background: #fff;
             text-align: center;
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            padding: 60px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-
         .google-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background-color: #4285F4;
+            background: #4285F4;
             color: white;
             padding: 12px 25px;
-            border-radius: 50px;
+            border-radius: 5px;
             font-weight: bold;
-            margin-bottom: 3rem;
-            transition: transform 0.2s;
+            margin-top: 20px;
         }
-
-        .google-btn:hover {
-            transform: scale(1.05);
-            background-color: #357ae8;
-        }
-
-        .linkedin-frame-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            border: 1px solid #eee;
+        .google-btn:hover { background: #357ae8; }
+        
+        .linkedin-container {
+            margin-top: 50px;
+            background: #f4f4f4;
+            padding: 20px;
             border-radius: 10px;
-            overflow: hidden;
+            min-height: 400px;
         }
 
         /* --- CONTACT --- */
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem;
-            justify-content: center;
+        .contact-info {
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
         }
-
-        .contact-info, .contact-form {
-            flex: 1;
-            min-width: 300px;
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .contact-item {
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
+        .contact-info p { margin: 10px 0; font-size: 1.1rem; }
+        .contact-info a { color: var(--accent); text-decoration: underline; }
 
         /* --- FOOTER --- */
         footer {
-            background: var(--text-color);
-            color: var(--white);
             text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
+            padding: 20px;
+            background: #222;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                right: 0;
-                width: 100%;
-                background: var(--glass);
-                text-align: center;
-                padding: 2rem 0;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-container {
-                flex-direction: column;
-            }
+            header h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            .menu-toggle { display: block; }
+            .about-container { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav>
         <div class="logo">☕ MJL Services</div>
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="menu-toggle">☰</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -392,94 +312,102 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Looking for Developers?</h1>
-            <p>We brew high-quality websites and digital solutions with the same care as a perfect cup of coffee.</p>
-            <a href="#contact" class="btn">Start Your Project</a>
-        </div>
-    </section>
+    <header id="home">
+        <h1>Looking for Developers?</h1>
+        <p>Expert web development served with the warmth of a perfect brew.</p>
+        <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn">Book a Meeting</a>
+    </header>
 
     <!-- About Section -->
     <section id="about">
         <h2 class="section-title">About MJL Services</h2>
-        <p class="section-subtitle">Our Story & Experience</p>
+        <p class="section-subtitle">The Story Behind the Code</p>
+        
         <div class="about-container">
             <div class="about-img">
-                <!-- IMPORTANT: Ensure you have an image named 'profile.jpg' in your folder -->
-                <img src="profile.jpg" alt="MJL Services Founder" onerror="this.src='https://via.placeholder.com/400x400?text=Your+Photo'">
+                <!-- UPDATED IMAGE PATH HERE -->
+                <img src="img/mjl.jpg" alt="Michael John Lano">
             </div>
             <div class="about-text">
-                <h3>Brewing Code Since Day One</h3>
-                <p>Welcome to MJL Services. What started as a passion for both coding and coffee has evolved into a full-service digital agency. With years of experience in web development, I help businesses establish a strong online presence.</p>
-                <br>
-                <p>Just like a barista crafts the perfect espresso, I craft clean, efficient, and beautiful code tailored to your specific needs. Whether you are a local coffee shop or a global enterprise, we serve quality.</p>
+                <h3>From Coffee Beans to Code Beans</h3>
+                <p>Welcome to MJL Services. What started as a passion for brewing the perfect cup of coffee evolved into a dedication to brewing the perfect line of code. Just like a great barista understands the nuances of every bean, I understand the unique needs of every client.</p>
+                <p>With years of experience in full-stack development, I've helped businesses across the globe establish their digital presence. Whether you need a simple landing page or a complex e-commerce platform, I bring the same level of care and precision to every project.</p>
+                <p>Let's build something great together.</p>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" style="background-color: var(--secondary-bg);">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">Custom solutions for your business</p>
+    <section id="services">
+        <h2 class="section-title">Our Menu</h2>
+        <p class="section-subtitle">Development Services & Fresh Brews</p>
+        
         <div class="services-grid">
+            <!-- Service 1 -->
             <div class="service-card">
                 <span class="service-icon">💻</span>
                 <h3>Web Development</h3>
-                <p>Responsive, fast, and modern websites built to convert visitors into customers.</p>
-                <a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn-small">Book Meeting</a>
+                <p>Custom websites built from scratch using modern technologies. Fast, secure, and responsive.</p>
+                <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn-small">Book Meeting</a>
             </div>
+            <!-- Service 2 -->
             <div class="service-card">
                 <span class="service-icon">🎨</span>
                 <h3>UI/UX Design</h3>
-                <p>Beautiful interfaces that provide an intuitive and engaging user experience.</p>
-                <a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn-small">Book Meeting</a>
+                <p>Beautiful, intuitive interfaces designed to convert visitors into loyal customers.</p>
+                <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn-small">Book Meeting</a>
             </div>
+            <!-- Service 3 -->
             <div class="service-card">
+                <span class="service-icon">🛒</span>
+                <h3>E-Commerce</h3>
+                <p>Full online store setups with payment integration, inventory management, and security.</p>
+                <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn-small">Book Meeting</a>
+            </div>
+             <!-- Service 4 -->
+             <div class="service-card">
                 <span class="service-icon">☕</span>
-                <h3>Coffee Consultation</h3>
-                <p>Helping coffee shops digitize their menu and ordering systems.</p>
-                <a href="https://calendly.com/michaeljohnlano2/project-meeting" target="_blank" class="btn-small">Book Meeting</a>
+                <h3>Premium Coffee</h3>
+                <p>Locally sourced beans roasted to perfection. Available for bulk orders and events.</p>
+                <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn-small">Order Now</a>
             </div>
         </div>
     </section>
 
     <!-- Locations Section -->
-    <section id="locations" class="locations-section">
+    <section id="locations">
         <h2 class="section-title">Service Areas</h2>
         <p class="section-subtitle">Serving clients locally and globally</p>
+        
         <div class="locations-grid">
             <div class="location-item">Arizona, USA</div>
             <div class="location-item">Illinois, USA</div>
             <div class="location-item">Maryland, USA</div>
             <div class="location-item">Virginia, USA</div>
-            <div class="location-item">Phoenix, AZ, USA</div>
             <div class="location-item">North Carolina, USA</div>
             <div class="location-item">Washington, DC, USA</div>
-            <div class="location-item">Taguig, Metro Manila</div>
-            <div class="location-item">Las Piñas, Metro Manila</div>
-            <div class="location-item">Parañaque, Metro Manila</div>
-            <div class="location-item">Makati City, Metro Manila</div>
+            <div class="location-item">Phoenix, AZ, USA</div>
+            <div class="location-item">Taguig, Philippines</div>
+            <div class="location-item">Las Piñas, Philippines</div>
+            <div class="location-item">Parañaque, Philippines</div>
+            <div class="location-item">Makati City, Philippines</div>
             <div class="location-item">Remote / Global</div>
         </div>
     </section>
 
     <!-- Reviews & LinkedIn Section -->
     <section id="reviews">
-        <h2 class="section-title">Reviews & Recommendations</h2>
-        <p class="section-subtitle">See what our clients and colleagues say</p>
-        
-        <div class="reviews-container">
-            <!-- Google Review Button -->
+        <div class="reviews-section">
+            <h2 class="section-title">Client Feedback</h2>
+            <p class="section-subtitle">See what our clients say about us</p>
+            
             <a href="https://g.page/r/Ce3iQHCKXOV_EAE/review" target="_blank" class="google-btn">
                 <span>★</span> Leave a Review on Google
             </a>
 
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;">
-
-            <!-- LinkedIn Recommendations Iframe -->
-            <h3 style="margin-bottom: 1.5rem; color: #0077b5;">LinkedIn Recommendations</h3>
-            <div class="linkedin-frame-container">
+            <!-- LINKEDIN IFRAME ADDED HERE -->
+            <div class="linkedin-container">
+                <h3 style="margin-bottom: 20px; color: #0077b5;">Professional Recommendations</h3>
                 <iframe 
                     src="https://widgets.sociablekit.com/linkedin-recommendations/iframe/25700779" 
                     frameborder="0" 
@@ -492,59 +420,40 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" style="background-color: var(--secondary-bg);">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">Ready to start your project? Contact us today.</p>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>📞</span> +639695747902
-                </div>
-                <div class="contact-item">
-                    <span>✉️</span> michaeljohnlano2@gmail.com
-                </div>
-                <div class="contact-item">
-                    <span>📍</span> Metro Manila, Philippines & Remote
-                </div>
-            </div>
-            <div class="contact-form">
-                <form action="mailto:michaeljohnlano2@gmail.com" method="post" enctype="text/plain">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; border:none; cursor:pointer;">Send Message</button>
-                </form>
-            </div>
+    <section id="contact">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p>Ready to start your project or order coffee?</p>
+            <p>📧 Email: <a href="mailto:michaeljohnlano2@gmail.com">michaeljohnlano2@gmail.com</a></p>
+            <p>📱 Phone: +639695747902</p>
+            <br>
+            <a href="https://calendly.com/michaeljohnlano2/project-meeting" class="btn" style="background: white; color: var(--primary); border: none;">Schedule Call</a>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 MJL Services. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Transparent Navbar Script
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+        // Simple script for mobile menu toggle if needed
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.nav-links');
+        
+        toggle.addEventListener('click', () => {
+            if(nav.style.display === 'flex') {
+                nav.style.display = 'none';
             } else {
-                navbar.classList.remove('scrolled');
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '60px';
+                nav.style.right = '0';
+                nav.style.background = '#2c2c2c';
+                nav.style.width = '100%';
+                nav.style.padding = '20px';
             }
         });
-
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
     </script>
 </body>
 </html>
